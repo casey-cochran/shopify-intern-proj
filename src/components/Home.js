@@ -2,7 +2,7 @@ import "./Home.css";
 import { useState, useEffect } from "react";
 
 const Home = () => {
-  const apiKey = "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";
+  const apiKey = "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";
   const [prompt, setPrompt] = useState("");
   const [answer, setAnswer] = useState(() => {
     const saved = localStorage.getItem("answer")
