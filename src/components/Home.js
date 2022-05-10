@@ -2,7 +2,7 @@ import "./Home.css";
 import { useState, useEffect } from "react";
 
 const Home = () => {
-  const apiKey = "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";
+  const apiKey = "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";
   const [prompt, setPrompt] = useState("");
   const [answer, setAnswer] = useState(() => {
     const saved = localStorage.getItem("answer")
@@ -12,6 +12,7 @@ const Home = () => {
 
 
   const handleSubmit = async (event) => {
+    if(!prompt) return;
     event.preventDefault();
 
     const apiData = {
@@ -40,6 +41,12 @@ const Home = () => {
     setPrompt("");
   };
 
+  const clearStorage = (e) => {
+    e.preventDefault();
+    localStorage.clear();
+    setAnswer([]);
+  }
+
   useEffect(() => {
     localStorage.setItem("answer", JSON.stringify(answer))
   }, [answer])
@@ -50,7 +57,10 @@ const Home = () => {
       <form onSubmit={handleSubmit} className="form">
         <label>Enter Prompt</label>
         <textarea onChange={(e) => setPrompt(e.target.value)} value={prompt} placeholder='Ask your question here' />
+        <div className="btn-cont">
+        <button onClick={clearStorage}>Clear Results</button>
         <button type="submit">Submit</button>
+        </div>
       </form>
       <div className="responses">
         <h3>Responses</h3>
