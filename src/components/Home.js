@@ -2,7 +2,7 @@ import "./Home.css";
 import { useState, useEffect } from "react";
 
 const Home = () => {
-  const apiKey = "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";
+  const apiKey = "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";
   const [prompt, setPrompt] = useState("");
   const [answer, setAnswer] = useState(() => {
     const saved = localStorage.getItem("answer")
@@ -30,7 +30,7 @@ const Home = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${apiKey}`,
+          Authorization: `Bearer ${process.env.REACT_APP_SECRET_KEY}`,
         },
         body: JSON.stringify(apiData),
       }
