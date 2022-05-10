@@ -53,7 +53,7 @@ const Home = () => {
   return (
     <div className="home-container">
       <h1>Fun with AI</h1>
-      <form onSubmit={handleSubmit} className="form">
+      <form onSubmit={handleSubmit}>
         <label>Enter Prompt</label>
         <textarea onChange={(e) => setPrompt(e.target.value)} value={prompt} placeholder='Ask your question here' />
         <div className="btn-cont">
@@ -61,17 +61,17 @@ const Home = () => {
         <button type="submit">Submit</button>
         </div>
       </form>
-      <div className="responses">
+      <main className="responses">
         <h3>Responses</h3>
           <div>
             {answer?.length > 0 && answer?.map((ele, index) => {
               return (
                 <div className="response-cont" key={index}>
-                  <div className="res-cont">
+                  <div className="sub-res">
                     <h5>Prompt:</h5>
                     <p className="user-prompt">{ele.Prompt}</p>
                   </div>
-                  <div className="res-cont">
+                  <div className="sub-res">
                     <h5>Response: </h5>
                     <p>{ele.choices[0].text}</p>
                   </div>
@@ -79,7 +79,7 @@ const Home = () => {
               );
             })}
           </div>
-      </div>
+      </main>
     </div>
   );
 };

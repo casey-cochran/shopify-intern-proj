@@ -8,7 +8,7 @@
     width: 1000px;
 }
 
-.res-cont{
+.sub-res{
     display: flex;
     width: 800px;
     gap: 20px;
@@ -44,7 +44,7 @@ label{
     margin-top: 20px;
 }
 
-.form{
+form{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
