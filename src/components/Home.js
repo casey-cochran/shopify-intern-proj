@@ -1,10 +1,15 @@
 import "./Home.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Home = () => {
-  const apiKey = "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";
+  const apiKey = "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";
   const [prompt, setPrompt] = useState("");
-  const [answer, setAnswer] = useState([]);
+  const [answer, setAnswer] = useState(() => {
+    const saved = localStorage.getItem("answer")
+    const val = JSON.parse(saved)
+    return val || []
+  });
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -35,6 +40,9 @@ const Home = () => {
     setPrompt("");
   };
 
+  useEffect(() => {
+    localStorage.setItem("answer", JSON.stringify(answer))
+  }, [answer])
 
   return (
     <div className="home-container">
@@ -46,9 +54,8 @@ const Home = () => {
       </form>
       <div className="responses">
         <h3>Responses</h3>
-        {answer && (
           <div>
-            {answer?.map((ele, index) => {
+            {answer?.length > 0 && answer?.map((ele, index) => {
               return (
                 <div className="response-cont" key={index}>
                   <div className="res-cont">
@@ -63,7 +70,6 @@ const Home = () => {
               );
             })}
           </div>
-        )}
       </div>
     </div>
   );
